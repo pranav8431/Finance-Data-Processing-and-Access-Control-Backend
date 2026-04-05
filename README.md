@@ -11,6 +11,12 @@ This project includes:
 - Pytest suite validating auth, RBAC, filters, pagination, and analytics
 - Browser-based frontend test harness at `/ui/`
 
+## API Documentation Link
+- Repository API docs file: `docs/API_DOCUMENTATION.md`
+- Local interactive docs (when server is running):
+  - Swagger UI: `http://127.0.0.1:8000/docs`
+  - ReDoc: `http://127.0.0.1:8000/redoc`
+
 ## 1) Tech Stack and Why
 - Python 3.11+ (tested on Python 3.13 in this environment)
 - FastAPI for fast API development with strong request validation
