@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Records | FinanceOps Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/ui/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Financial Records</h1>
+          <p>Record CRUD + filter/pagination tester with deterministic listing.</p>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h2>Navigation</h2>
+          <nav class="nav">
+            <a href="index.html">Overview</a>
+            <a href="auth.html">Auth & Session</a>
+            <a href="users.html">User Management</a>
+            <a href="records.html">Financial Records</a>
+            <a href="dashboard.html">Dashboard Insights</a>
+          </nav>
+          <div class="session-box">
+            <p><strong>User:</strong> <span id="session-user">not set</span></p>
+            <p><strong>Role:</strong> <span id="session-role">unknown</span></p>
+            <p><strong>Status:</strong> <span id="session-status">unknown</span></p>
+          </div>
+        </aside>
+
+        <main class="panel-stack">
+          <section class="panel">
+            <h3>Session Controls</h3>
+            <div class="grid two">
+              <div class="row"><label for="base-url">Base URL</label><input id="base-url" /></div>
+              <div class="row"><label for="token">Bearer Token</label><textarea id="token" rows="3"></textarea></div>
+            </div>
+            <div class="btn-row">
+              <button id="btn-save-config" class="btn primary">Save Session Settings</button>
+              <button id="btn-clear-token" class="btn warn">Clear Token</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h3>Record Payload</h3>
+            <div class="grid three">
+              <div class="row"><label for="record-id">Record ID</label><input id="record-id" type="number" min="1" placeholder="1" /></div>
+              <div class="row"><label for="record-amount">Amount</label><input id="record-amount" placeholder="499.99" /></div>
+              <div class="row"><label for="record-type">Type</label><select id="record-type"><option value="income">income</option><option value="expense">expense</option></select></div>
+            </div>
+            <div class="grid three">
+              <div class="row"><label for="record-category">Category</label><input id="record-category" placeholder="rent" /></div>
+              <div class="row"><label for="record-date">Date</label><input id="record-date" type="date" /></div>
+              <div class="row"><label for="record-notes">Notes</label><input id="record-notes" placeholder="optional" /></div>
+            </div>
+
+            <h3>List Filters</h3>
+            <div class="grid three">
+              <div class="row"><label for="filter-type">Type</label><select id="filter-type"><option value="">(any)</option><option value="income">income</option><option value="expense">expense</option></select></div>
+              <div class="row"><label for="filter-category">Category</label><input id="filter-category" placeholder="rent" /></div>
+              <div class="row"><label for="filter-created-by">Created By</label><input id="filter-created-by" type="number" min="1" /></div>
+            </div>
+            <div class="grid three">
+              <div class="row"><label for="filter-start-date">Start Date</label><input id="filter-start-date" type="date" /></div>
+              <div class="row"><label for="filter-end-date">End Date</label><input id="filter-end-date" type="date" /></div>
+              <div class="row"><label for="filter-limit">Limit</label><input id="filter-limit" type="number" min="1" max="100" value="20" /></div>
+            </div>
+            <div class="grid two">
+              <div class="row"><label for="filter-offset">Offset</label><input id="filter-offset" type="number" min="0" value="0" /></div>
+              <div class="row"></div>
+            </div>
+
+            <div class="btn-row">
+              <button id="btn-records-create" class="btn primary">POST /records</button>
+              <button id="btn-records-list" class="btn soft">GET /records</button>
+              <button id="btn-records-get" class="btn soft">GET /records/{id}</button>
+              <button id="btn-records-update" class="btn soft">PATCH /records/{id}</button>
+              <button id="btn-records-delete" class="btn danger">DELETE /records/{id}</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h3>Response</h3>
+            <pre id="response-console" class="output">Viewer/Analyst/Admin can read. Admin required for writes.</pre>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="/ui/core.js"></script>
+    <script src="/ui/records.js"></script>
+  </body>
+</html>

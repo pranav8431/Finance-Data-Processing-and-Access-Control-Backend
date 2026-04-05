@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinanceOps Console</title>
+    <title>Auth | FinanceOps Console</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -13,13 +13,8 @@
     <div class="shell">
       <header class="topbar">
         <div class="brand">
-          <h1>FinanceOps Control Center</h1>
-          <p>Operational dashboard for finance data processing and role-based access workflows.</p>
-        </div>
-        <div class="tag-row">
-          <span class="tag">Internal Tooling</span>
-          <span class="tag">RBAC Ready</span>
-          <span class="tag">Multi-Page UI</span>
+          <h1>Auth and Session Management</h1>
+          <p>Authenticate as seeded users and persist bearer token for all modules.</p>
         </div>
       </header>
 
@@ -42,21 +37,7 @@
 
         <main class="panel-stack">
           <section class="panel">
-            <h3>Platform Overview</h3>
-            <p class="info">This UI is organized into dedicated pages to mirror a production operations console. Session settings are shared across all pages with local storage.</p>
-            <div class="kpi-grid">
-              <div class="kpi"><h4>API Health</h4><p id="kpi-health">Unknown</p></div>
-              <div class="kpi"><h4>Configured Base URL</h4><p id="kpi-base">Not set</p></div>
-              <div class="kpi"><h4>Token Presence</h4><p id="kpi-token">No</p></div>
-            </div>
-            <div class="btn-row">
-              <button id="btn-health" class="btn primary">Check /health</button>
-              <a class="btn soft" href="auth.html">Go To Login</a>
-            </div>
-          </section>
-
-          <section class="panel">
-            <h3>Shared Connection Settings</h3>
+            <h3>Connection</h3>
             <div class="grid two">
               <div class="row">
                 <label for="base-url">Base URL</label>
@@ -64,23 +45,41 @@
               </div>
               <div class="row">
                 <label for="token">Bearer Token</label>
-                <textarea id="token" rows="3" placeholder="Stored for all pages"></textarea>
+                <textarea id="token" rows="3" placeholder="Saved token for all pages"></textarea>
               </div>
             </div>
             <div class="btn-row">
               <button id="btn-save-config" class="btn primary">Save Session Settings</button>
               <button id="btn-clear-token" class="btn warn">Clear Token</button>
+              <button id="btn-health" class="btn soft">GET /health</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <h3>Login</h3>
+            <div class="btn-row">
+              <button class="btn soft preset" data-email="admin@example.com" data-password="admin123">Use Admin</button>
+              <button class="btn soft preset" data-email="viewer@example.com" data-password="viewer123">Use Viewer</button>
+              <button class="btn soft preset" data-email="analyst@example.com" data-password="analyst123">Use Analyst</button>
+              <button class="btn soft preset" data-email="inactive@example.com" data-password="inactive123">Use Inactive</button>
+            </div>
+            <div class="grid two">
+              <div class="row"><label for="login-email">Email</label><input id="login-email" type="email" /></div>
+              <div class="row"><label for="login-password">Password</label><input id="login-password" type="password" /></div>
+            </div>
+            <div class="btn-row">
+              <button id="btn-login" class="btn primary">POST /api/v1/auth/login</button>
             </div>
           </section>
 
           <section class="panel">
             <h3>Response</h3>
-            <pre id="response-console" class="output">Welcome. Start by checking health or authenticating.</pre>
+            <pre id="response-console" class="output">Use presets and login to initialize session token.</pre>
           </section>
         </main>
       </div>
     </div>
     <script src="/ui/core.js"></script>
-    <script src="/ui/overview.js"></script>
+    <script src="/ui/auth.js"></script>
   </body>
 </html>

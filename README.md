@@ -210,14 +210,17 @@ Frontend tester: `http://127.0.0.1:8000/ui/`
 - `inactive@example.com / inactive123`
 
 ## 10) Frontend Test Harness (`/ui/`)
-The built-in frontend allows manual testing of all APIs from a single page:
-- Health check button
-- Login with preset credentials
-- Auto token storage for authenticated requests
-- Full Users CRUD actions
-- Full Records CRUD actions + filter/pagination query builder
-- Dashboard summary action
-- Response console with status and payload output
+The built-in frontend now uses a multi-page operations-console layout:
+- `/ui/` overview page (health and shared session settings)
+- `/ui/auth.html` authentication/session page
+- `/ui/users.html` user-management page
+- `/ui/records.html` records CRUD + filter page
+- `/ui/dashboard.html` dashboard insights page
+
+Shared session behavior:
+- Base URL and bearer token are persisted in browser local storage and reused across pages.
+- Session panel shows decoded token context (`sub`, `role`, `status`) for quick validation.
+- Every page includes a response console to inspect status codes and response payloads.
 
 This is intended for fast evaluator demos and QA verification.
 
