@@ -54,9 +54,18 @@ app/
       records.py
       dashboard.py
   static/
-    index.html             # Frontend API tester UI
-    styles.css             # UI styles
-    app.js                 # UI request logic
+    index.html             # Overview page
+    auth.html              # Authentication page
+    users.html             # User-management page
+    records.html           # Records page
+    dashboard.html         # Dashboard page
+    styles.css             # Shared UI styles
+    core.js                # Shared API/session client utilities
+    overview.js            # Overview page logic
+    auth.js                # Auth page logic
+    users.js               # Users page logic
+    records.js             # Records page logic
+    dashboard.js           # Dashboard page logic
 alembic/
   env.py
   versions/0001_initial_schema.py
@@ -190,7 +199,7 @@ If `python3.11` is unavailable locally, use any installed Python 3.11+ (example:
 
 ### Local setup
 ```bash
-python3.13 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
