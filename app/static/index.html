@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance API Control Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/ui/styles.css" />
+  </head>
+  <body>
+    <div class="background-grid" aria-hidden="true"></div>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Finance Dashboard Assignment</p>
+        <h1>API Control Room</h1>
+        <p class="sub">Single-page tester for auth, RBAC, users, records, and dashboard analytics.</p>
+      </div>
+      <button id="btn-clear" class="btn btn-ghost">Clear Console</button>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Connection</h2>
+        <div class="row">
+          <label for="base-url">Base URL</label>
+          <input id="base-url" value="" placeholder="Defaults to current origin" />
+        </div>
+        <div class="row actions">
+          <button id="btn-health" class="btn">GET /health</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Auth</h2>
+        <div class="preset-row">
+          <button class="btn btn-small btn-ghost preset" data-email="admin@example.com" data-password="admin123">Admin</button>
+          <button class="btn btn-small btn-ghost preset" data-email="viewer@example.com" data-password="viewer123">Viewer</button>
+          <button class="btn btn-small btn-ghost preset" data-email="analyst@example.com" data-password="analyst123">Analyst</button>
+          <button class="btn btn-small btn-ghost preset" data-email="inactive@example.com" data-password="inactive123">Inactive</button>
+        </div>
+        <div class="grid two">
+          <div class="row">
+            <label for="login-email">Email</label>
+            <input id="login-email" type="email" placeholder="admin@example.com" />
+          </div>
+          <div class="row">
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password" placeholder="admin123" />
+          </div>
+        </div>
+        <div class="row actions">
+          <button id="btn-login" class="btn">POST /auth/login</button>
+        </div>
+        <div class="row">
+          <label for="token">Bearer Token</label>
+          <textarea id="token" rows="4" placeholder="Token appears here after login"></textarea>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Users (Admin)</h2>
+        <div class="grid two">
+          <div class="row"><label for="user-id">User ID</label><input id="user-id" type="number" min="1" placeholder="1" /></div>
+          <div class="row"><label for="user-limit-note">Actions</label><p id="user-limit-note" class="hint">Create, list, get by id, patch by id</p></div>
+        </div>
+        <div class="grid three">
+          <div class="row"><label for="user-name">Name</label><input id="user-name" placeholder="New User" /></div>
+          <div class="row"><label for="user-email">Email</label><input id="user-email" type="email" placeholder="new@example.com" /></div>
+          <div class="row"><label for="user-password">Password</label><input id="user-password" placeholder="secret123" /></div>
+        </div>
+        <div class="grid two">
+          <div class="row">
+            <label for="user-role">Role</label>
+            <select id="user-role">
+              <option value="viewer">viewer</option>
+              <option value="analyst">analyst</option>
+              <option value="admin">admin</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="user-status">Status</label>
+            <select id="user-status">
+              <option value="active">active</option>
+              <option value="inactive">inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="row actions wrap">
+          <button id="btn-users-create" class="btn">POST /users</button>
+          <button id="btn-users-list" class="btn btn-ghost">GET /users</button>
+          <button id="btn-users-get" class="btn btn-ghost">GET /users/{id}</button>
+          <button id="btn-users-update" class="btn btn-ghost">PATCH /users/{id}</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Records</h2>
+        <div class="grid three">
+          <div class="row"><label for="record-id">Record ID</label><input id="record-id" type="number" min="1" placeholder="1" /></div>
+          <div class="row"><label for="record-amount">Amount</label><input id="record-amount" placeholder="499.99" /></div>
+          <div class="row">
+            <label for="record-type">Type</label>
+            <select id="record-type"><option value="income">income</option><option value="expense">expense</option></select>
+          </div>
+        </div>
+        <div class="grid three">
+          <div class="row"><label for="record-category">Category</label><input id="record-category" placeholder="tools" /></div>
+          <div class="row"><label for="record-date">Date</label><input id="record-date" type="date" /></div>
+          <div class="row"><label for="record-created-by">Created By (filter)</label><input id="record-created-by" type="number" min="1" placeholder="1" /></div>
+        </div>
+        <div class="row"><label for="record-notes">Notes</label><input id="record-notes" placeholder="optional" /></div>
+
+        <h3>List Filters</h3>
+        <div class="grid three">
+          <div class="row"><label for="filter-type">Type</label><select id="filter-type"><option value="">(any)</option><option value="income">income</option><option value="expense">expense</option></select></div>
+          <div class="row"><label for="filter-category">Category</label><input id="filter-category" placeholder="rent" /></div>
+          <div class="row"><label for="filter-start">Start Date</label><input id="filter-start" type="date" /></div>
+        </div>
+        <div class="grid three">
+          <div class="row"><label for="filter-end">End Date</label><input id="filter-end" type="date" /></div>
+          <div class="row"><label for="filter-limit">Limit</label><input id="filter-limit" type="number" min="1" max="100" value="20" /></div>
+          <div class="row"><label for="filter-offset">Offset</label><input id="filter-offset" type="number" min="0" value="0" /></div>
+        </div>
+
+        <div class="row actions wrap">
+          <button id="btn-records-create" class="btn">POST /records</button>
+          <button id="btn-records-list" class="btn btn-ghost">GET /records</button>
+          <button id="btn-records-get" class="btn btn-ghost">GET /records/{id}</button>
+          <button id="btn-records-update" class="btn btn-ghost">PATCH /records/{id}</button>
+          <button id="btn-records-delete" class="btn btn-danger">DELETE /records/{id}</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Dashboard</h2>
+        <div class="row actions">
+          <button id="btn-dashboard-summary" class="btn">GET /dashboard/summary</button>
+        </div>
+      </section>
+
+      <section class="panel console-panel">
+        <h2>Response Console</h2>
+        <pre id="console" class="console">Ready. Pick an action to test the API.</pre>
+      </section>
+    </main>
+
+    <script src="/ui/app.js"></script>
+  </body>
+</html>

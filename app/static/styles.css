@@ -1,0 +1,249 @@
+:root {
+  --bg: #fff8ec;
+  --panel: #ffffff;
+  --text: #1f1e1b;
+  --muted: #615d55;
+  --line: #d5c8ac;
+  --accent: #176b5e;
+  --accent-2: #c44929;
+  --danger: #9f1d15;
+  --shadow: 0 10px 30px rgba(74, 53, 20, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(circle at 15% 20%, #ffeecb 0%, transparent 40%),
+    radial-gradient(circle at 85% 5%, #d7f6e8 0%, transparent 33%), var(--bg);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.background-grid {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(44, 52, 51, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(44, 52, 51, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.4rem 1rem 0.8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0.3rem 0 0.2rem;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.sub {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem 2rem;
+}
+
+.panel {
+  grid-column: span 12;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.panel h2,
+.panel h3 {
+  margin: 0 0 0.75rem;
+}
+
+.panel h3 {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.row label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffef9;
+  color: var(--text);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.65rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #6ad1be;
+  border-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.65rem;
+}
+
+.actions.wrap {
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 0.85rem;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+  cursor: pointer;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  background: #f2f0ea;
+  color: #272521;
+}
+
+.btn-small {
+  padding: 0.35rem 0.55rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.hint {
+  margin: 0;
+  padding: 0.56rem 0.65rem;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.console-panel {
+  grid-column: span 12;
+}
+
+.console {
+  margin: 0;
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #1a1f2e;
+  color: #d8ecff;
+  padding: 0.9rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 920px) {
+  .panel:nth-child(1),
+  .panel:nth-child(2) {
+    grid-column: span 6;
+  }
+
+  .panel:nth-child(3),
+  .panel:nth-child(4) {
+    grid-column: span 6;
+  }
+
+  .panel:nth-child(5) {
+    grid-column: span 6;
+  }
+
+  .panel.console-panel {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid.two,
+  .grid.three {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+}
